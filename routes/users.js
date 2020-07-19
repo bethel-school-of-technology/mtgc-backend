@@ -38,10 +38,14 @@ router.post('/signup', function(req, res, next) {
 
 
 //Login user and return JWT as cookie post below
+
+router.get('/login', function(req, res, next) {
+  res.render('login');
+});
 router.post('/login', function (req, res, next) {
   models.users.findOne({
     where: {
-      Username: req.body.username,
+      Username: req.body.Username,
       Password: req.body.password
     }
   }).then(user => {
@@ -50,15 +54,17 @@ router.post('/login', function (req, res, next) {
       return res.status(401).json({
         message: "Login Failed"
       });
-    }
-    if (user) {
-      let token = authService.signUser(user); 
-      res.cookie('jwt', token); 
-      res.send('Login successful');
+    }else{    
+      let passwordMatch = authService.comparePasswords(req.body.password, user.password); 
+      if(passwordMatch){
+        let token = authService.signUser(user);
+        res.cookie('jwt', token); 
+        res.send('Login successful');
     } else {
       console.log('Wrong password');
       res.redirect('login')
     }
+  }
   });
 });
 

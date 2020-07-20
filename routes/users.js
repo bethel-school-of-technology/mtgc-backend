@@ -10,9 +10,9 @@ router.get('/', function(req, res, next) {
 });
 
 //need post for creating a new user 
-router.get('/signup', function(req, res, next) {
+/* router.get('/signup', function(req, res, next) {
   res.render('signup');
-});
+}); */
 
 router.post('/signup', function(req, res, next) {
   models.users
@@ -29,7 +29,7 @@ router.post('/signup', function(req, res, next) {
     })
     .spread(function(result, created) {
       if (created) {
-        res.redirect('index');
+        res.json('index');
       } else {
         res.send('This user already exists');
       }
@@ -39,14 +39,14 @@ router.post('/signup', function(req, res, next) {
 
 //Login user and return JWT as cookie post below
 
-router.get('/login', function(req, res, next) {
+/* router.get('/login', function(req, res, next) {
   res.render('login');
-});
+}); */
 router.post('/login', function (req, res, next) {
   models.users.findOne({
     where: {
-      Username: req.body.Username,
-      Password: req.body.password
+      Username: req.body.username,
+      
     }
   }).then(user => {
     if (!user) {
@@ -55,7 +55,7 @@ router.post('/login', function (req, res, next) {
         message: "Login Failed"
       });
     }else{    
-      let passwordMatch = authService.comparePasswords(req.body.password, user.password); 
+      let passwordMatch = authService.comparePasswords(req.body.password, user.Password); 
       if(passwordMatch){
         let token = authService.signUser(user);
         res.cookie('jwt', token); 
@@ -63,6 +63,7 @@ router.post('/login', function (req, res, next) {
     } else {
       console.log('Wrong password');
       res.redirect('login')
+  
     }
   }
   });

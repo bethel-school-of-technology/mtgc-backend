@@ -7,8 +7,8 @@ var authService = {
       const token = jwt.sign(
         {
           Username: user.Username,
-          UserId: user.UserId,
-          Admin: user.Admin
+          UserId: user.UserId
+          
         },
         'secretkey',
         {
@@ -18,6 +18,20 @@ var authService = {
       );
       return token;
     },
+
+    signUser: function (user) {
+      const token = jwt.sign({
+              Username: user.Username,
+              UserId: user.UserId,
+              Admin: user.Admin
+          },
+          "secret", {
+              expiresIn: "1h"
+          }
+      );
+      return token;
+  },
+
     verifyUser: function (token) {  
       try {
         let decoded = jwt.verify(token, 'secretkey'); 
@@ -34,7 +48,9 @@ var authService = {
     },
     comparePasswords: function (plainTextPassword, hashedPassword) {
       return bcrypt.compareSync(plainTextPassword, hashedPassword)
-    }
+    },
+
+    
   
   }
   

@@ -1,0 +1,40 @@
+<h1>Welcome! Please sign up</h1>
+
+<form id="signup" name="signup" method="POST" action="/mission_info/mission_signup">
+    <div>
+        <label for="name">Organization Name: </label>
+        <input type="text" name="organizationName" required>
+    </div>
+    <div>
+        <label for="address">Organization Street Address: </label>
+        <input type="text" name="organizationStreetAddress" required>
+    </div>
+    <div>
+        <label for="email">Email: </label>
+        <input type="text" name="email" required>
+    </div>
+    <div>
+        <label for="city">City: </label>
+        <input type="text" name="city" required>
+    </div>
+    <div>
+        <label for="state">State: </label>
+        <input type="text" name="state" required>
+    </div>
+    <div>
+        <label for="zip">Zip: </label>
+        <input type="integer" name="zip" required>
+    </div>
+    <div>
+        <label for="city">Mission Location City: </label>
+        <input type="text" name="missionLocationCity" required>
+    </div>
+    <div>
+        <label for="country">MissionLocationCountry: </label>
+        <input type="text" name="missionLocationCountry" required>
+    </div>
+    
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>

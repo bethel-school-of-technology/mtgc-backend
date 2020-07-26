@@ -3,11 +3,11 @@
         "missions_infos": {
             "tableName": "missions_infos",
             "schema": {
-                "MissionId": {
+                "OrgId": {
                     "allowNull": false,
                     "autoIncrement": true,
                     "primaryKey": true,
-                    "field": "MissionId",
+                    "field": "OrgId",
                     "seqType": "Sequelize.INTEGER"
                 },
                 "OrganizationName": {
@@ -42,13 +42,14 @@
                     "field": "Verified",
                     "seqType": "Sequelize.BOOLEAN"
                 },
-                "Username": {
-                    "field": "Username",
-                    "seqType": "Sequelize.STRING"
-                },
                 "Image": {
                     "field": "Image",
                     "seqType": "Sequelize.BLOB"
+                },
+                "UserId": {
+                    "allowNull": false,
+                    "field": "UserId",
+                    "seqType": "Sequelize.INTEGER"
                 },
                 "createdAt": {
                     "allowNull": false,
@@ -71,6 +72,12 @@
                     "autoIncrement": true,
                     "primaryKey": true,
                     "field": "UserId",
+                    "references": {
+                        "model": "missions_infos",
+                        "key": "OrgId"
+                    },
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
                     "seqType": "Sequelize.INTEGER"
                 },
                 "FirstName": {
@@ -123,5 +130,5 @@
             "indexes": []
         }
     },
-    "revision": 2
+    "revision": 5
 }

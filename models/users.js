@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const users = sequelize.define(
     'users', 
     {
-      UserId: {
+      UserId: { //foreign key in mission_table 
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,

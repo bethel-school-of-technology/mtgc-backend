@@ -10,15 +10,9 @@ router.get('/', function(req, res, next) {
 });
 
 //need post for creating a new user 
-<<<<<<< HEAD
 /*router.get('/signup', function(req, res, next) {
   res.render('signup');
 });*/
-=======
-/* router.get('/signup', function(req, res, next) {
-  res.render('signup');
-}); */
->>>>>>> 39059a7106a3f15232cf4a807d0b3006200af94e
 
 router.post('/signup', function(req, res, next) {
   models.users
@@ -44,7 +38,6 @@ router.post('/signup', function(req, res, next) {
 
 
 //Login user and return JWT as cookie post below
-<<<<<<< HEAD
 /*router.get('/login', function(req, res, next) {
   res.render('login');
 });*/
@@ -52,55 +45,31 @@ router.post('/signup', function(req, res, next) {
 
 
 
-router.post('/login', function (req, res, next) {
-  models.users.findOne({
-    where: {
-      Username: req.body.username
-=======
-
-/* router.get('/login', function(req, res, next) {
-  res.render('login');
-}); */
-router.post('/login', function (req, res, next) {
-  models.users.findOne({
-    where: {
-      Username: req.body.username,
-      
->>>>>>> 39059a7106a3f15232cf4a807d0b3006200af94e
-    }
-  }).then(user => {
-    if (!user) {
-      console.log('User not found')
-      return res.status(401).json({
-        message: "Login Failed"
-      });
-<<<<<<< HEAD
-    } else {
-      let passwordMatch = authService.comparePasswords(req.body.password, user.Password);
-      if (passwordMatch) {
-        let token = authService.signUser(user);
-        res.cookie('jwt', token);
-        res.send('Login successful');
-      } else {
-        console.log('Wrong password');
-        res.send('Wrong password');
-      }
-=======
-    }else{    
-      let passwordMatch = authService.comparePasswords(req.body.password, user.Password); 
-      if(passwordMatch){
-        let token = authService.signUser(user);
-        res.cookie('jwt', token); 
-        res.send('Login successful');
-    } else {
-      console.log('Wrong password');
-      res.redirect('login')
-  
->>>>>>> 39059a7106a3f15232cf4a807d0b3006200af94e
-    }
-  }
-  });
-});
+// router.post('/login', function (req, res, next) {
+//   models.users.findOne({
+//     where: {
+//       Username: req.body.username
+//     }
+//   }).then(user => {
+//     if (!user) {
+//       console.log('User not found')
+//       return res.status(401).json({
+//         message: "Login Failed"
+//       });
+//     } else {
+//       let passwordMatch = authService.comparePasswords(req.body.password, user.Password);
+//       if (passwordMatch) {
+//         let token = authService.signUser(user);
+//         res.cookie('jwt', token);
+//         res.send('Login successful');
+//       } else {
+//         console.log('Wrong password');
+//         res.send('Wrong password');
+//       }
+//     }
+//   }
+//   });
+// });
 
 //need get method to pull profile page of user
 router.get('/user/:id', function(req, res, next) {

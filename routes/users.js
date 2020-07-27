@@ -40,6 +40,7 @@ router.post('/signup', function(req, res, next) {
 //Login user and return JWT as cookie post below
 /*router.get('/login', function(req, res, next) {
   res.render('login');
+<<<<<<< HEAD
 });*/
 
 
@@ -82,6 +83,27 @@ router.get('/user/:id', function(req, res, next) {
     let status;
     if (req.user.Admin) {
       status = 'Admin';
+=======
+}); */
+router.post('/login', function (req, res, next) {
+  models.users.findOne({
+    where: {
+      Username: req.body.username,
+      
+    }
+  }).then(user => {
+    if (!user) {
+      console.log('User not found')
+      return res.status(401).json({
+        message: "Login Failed"
+      });
+    }else{    
+      let passwordMatch = authService.comparePasswords(req.body.password, user.Password); 
+      if(passwordMatch){
+        let token = authService.signUser(user);
+        res.cookie('jwt', token); //this doesn't work res.json
+        res.send('Login successful');
+>>>>>>> 10f2ce2cb4e874896f7fd60ad2285f5592f5ef51
     } else {
       status = 'Normal user';
     }

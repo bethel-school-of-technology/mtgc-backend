@@ -2,8 +2,7 @@ var express = require('express');
 var router = express.Router();
 var models = require('../models');
 var authService = require('../services/auth');
-var cors = require('cors');
-var path = require('path');
+
 
 var bodyParser = require('body-parser');
 const app = express();
@@ -12,7 +11,7 @@ const port = process.env.SERVER_PORT || 8000;
 
 /* GET users listing. */
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -27,11 +26,11 @@ app.get("/api", (req, res) => {
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 //need post for creating a new user 
-router.get('/signup', function(req, res, next) {
+/*router.get('/signup', function(req, res, next) {
   res.render('signup');
-});
+});*/
 
-router.post('/signup', function(req, res, next) {
+app.post('/signup', function(req, res, next) {
   models.users
     .findOrCreate({
       where: {
@@ -46,7 +45,7 @@ router.post('/signup', function(req, res, next) {
     })
     .spread(function(result, created) {
       if (created) {
-        res.send(JSON.stringify('lusers')); 
+        res.json("Hello"); 
       } else {
         res.send('This user already exists');
       }
@@ -55,9 +54,7 @@ router.post('/signup', function(req, res, next) {
 
 
 //Login user and return JWT as cookie post below
-router.get('/login', function(req, res, next) {
-  res.render('login');
-});
+
 
 router.post('/login', function (req, res, next) {
   models.users.findOne({

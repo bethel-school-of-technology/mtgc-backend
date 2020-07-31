@@ -5,12 +5,12 @@ var authService = require('../services/auth');
 
 
 
-/*router.get('/mission_signup', function(req, res, next) {
+router.get('/mission_signup', function(req, res, next) {
     res.render('mission_signup');
-  });*/
+  });
   
   router.post('/mission_signup', function(req, res, next) {
-    models.mission_info
+    models.missions_info
       .findOrCreate({
         where: {
           OrganizationName: req.body.organizationname
@@ -33,9 +33,9 @@ var authService = require('../services/auth');
       });
   });
 
- /*router.get('/profile-mission', function(req, res, next) {
+ router.get('/profile-mission', function(req, res, next) {
     res.render('profile-mission');
-  });*/
+  });
   router.get('/mission/:id', function (req, res, next) {
     models.mission_info
       .findByPk(parseInt(req.params.id))

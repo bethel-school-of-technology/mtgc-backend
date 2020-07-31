@@ -1,5 +1,5 @@
 const jwt= require('jsonwebtoken');
-const models = require('../models/index');
+const models = require('../models/users');
 const bcrypt = require("bcryptjs");
 
 var authService = {
@@ -19,18 +19,7 @@ var authService = {
       return token;
     },
 
-    signUser: function (user) {
-      const token = jwt.sign({
-              Username: user.Username,
-              UserId: user.UserId,
-              Admin: user.Admin
-          },
-          "secret", {
-              expiresIn: "1h"
-          }
-      );
-      return token;
-  },
+   
 
     verifyUser: function (token) {  
       try {

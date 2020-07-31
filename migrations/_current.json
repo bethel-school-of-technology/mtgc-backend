@@ -1,5 +1,6 @@
 {
     "tables": {
+<<<<<<< HEAD
         
                 "missions_infos": {
                     "tableName": "missions_infos",
@@ -64,6 +65,72 @@
                     },
                     "indexes": []
                 },
+=======
+        "missions_infos": {
+            "tableName": "missions_infos",
+            "schema": {
+                "OrgId": {
+                    "allowNull": false,
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "field": "OrgId",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "OrganizationName": {
+                    "field": "OrganizationName",
+                    "seqType": "Sequelize.STRING"
+                },
+                "OrganizationStreetAddress": {
+                    "field": "OrganizationStreetAddress",
+                    "seqType": "Sequelize.STRING"
+                },
+                "City": {
+                    "field": "City",
+                    "seqType": "Sequelize.STRING"
+                },
+                "State": {
+                    "field": "State",
+                    "seqType": "Sequelize.STRING"
+                },
+                "Zip": {
+                    "field": "Zip",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "MissionLocationCity": {
+                    "field": "MissionLocationCity",
+                    "seqType": "Sequelize.STRING"
+                },
+                "MissionLocationCountry": {
+                    "field": "MissionLocationCountry",
+                    "seqType": "Sequelize.STRING"
+                },
+                "Verified": {
+                    "field": "Verified",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "Image": {
+                    "field": "Image",
+                    "seqType": "Sequelize.BLOB"
+                },
+                "UserId": {
+                    "allowNull": false,
+                    "field": "UserId",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+>>>>>>> 39059a7106a3f15232cf4a807d0b3006200af94e
         "users": {
             "tableName": "users",
             "schema": {
@@ -72,6 +139,12 @@
                     "autoIncrement": true,
                     "primaryKey": true,
                     "field": "UserId",
+                    "references": {
+                        "model": "missions_infos",
+                        "key": "OrgId"
+                    },
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
                     "seqType": "Sequelize.INTEGER"
                 },
                 "FirstName": {
@@ -124,5 +197,5 @@
             "indexes": []
         }
     },
-    "revision": 1
+    "revision": 5
 }

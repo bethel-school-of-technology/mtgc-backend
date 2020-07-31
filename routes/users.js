@@ -64,7 +64,11 @@ app.post('/signup', function(req, res, next) {
     })
     .spread(function(result, created) {
       if (created) {
+<<<<<<< HEAD
         res.json("Hello"); 
+=======
+        res.json('index');
+>>>>>>> 003304b47103b9a4de72533c0d1c41f25926d89b
       } else {
         res.send('This user already exists');
       }
@@ -73,6 +77,7 @@ app.post('/signup', function(req, res, next) {
 
 
 //Login user and return JWT as cookie post below
+<<<<<<< HEAD
 
 
 router.post('/login', function (req, res, next) {
@@ -98,6 +103,41 @@ router.post('/login', function (req, res, next) {
     }
   });
 });
+=======
+/*router.get('/login', function(req, res, next) {
+  res.render('login');
+<<<<<<< HEAD
+});*/
+
+
+
+
+// router.post('/login', function (req, res, next) {
+//   models.users.findOne({
+//     where: {
+//       Username: req.body.username
+//     }
+//   }).then(user => {
+//     if (!user) {
+//       console.log('User not found')
+//       return res.status(401).json({
+//         message: "Login Failed"
+//       });
+//     } else {
+//       let passwordMatch = authService.comparePasswords(req.body.password, user.Password);
+//       if (passwordMatch) {
+//         let token = authService.signUser(user);
+//         res.cookie('jwt', token);
+//         res.send('Login successful');
+//       } else {
+//         console.log('Wrong password');
+//         res.send('Wrong password');
+//       }
+//     }
+//   }
+//   });
+// });
+>>>>>>> 003304b47103b9a4de72533c0d1c41f25926d89b
 
 //need get method to pull profile page of user
 router.get('/profile', function (req, res, next) {
@@ -113,8 +153,47 @@ router.get('/profile', function (req, res, next) {
         }
       });
   } else {
+<<<<<<< HEAD
     res.status(401);
     res.send('Must be logged in');
+=======
+    let status;
+    if (req.user.Admin) {
+      status = 'Admin';
+=======
+}); */
+router.post('/login', function (req, res, next) {
+  models.users.findOne({
+    where: {
+      Username: req.body.username,
+      
+    }
+  }).then(user => {
+    if (!user) {
+      console.log('User not found')
+      return res.status(401).json({
+        message: "Login Failed"
+      });
+    }else{    
+      let passwordMatch = authService.comparePasswords(req.body.password, user.Password); 
+      if(passwordMatch){
+        let token = authService.signUser(user);
+        res.cookie('jwt', token); //this doesn't work res.json
+        res.send('Login successful');
+>>>>>>> 10f2ce2cb4e874896f7fd60ad2285f5592f5ef51
+    } else {
+      status = 'Normal user';
+    }
+
+    res.render('profile', {
+      FirstName: req.user.FirstName,
+      LastName: req.user.LastName,
+      Email: req.user.Email,
+      UserId: req.user.UserId,
+      Username: req.user.Username,
+      Status: status
+    });
+>>>>>>> 003304b47103b9a4de72533c0d1c41f25926d89b
   }
 });
 

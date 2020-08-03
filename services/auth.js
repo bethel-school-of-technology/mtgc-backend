@@ -1,14 +1,15 @@
 const jwt= require('jsonwebtoken');
 const models = require('../models/users');
 const bcrypt = require("bcryptjs");
+const { use } = require('../routes/users');
 
 var authService = {
     signUser: function(user) {
       const token = jwt.sign(
         {
           Username: user.Username,
-          UserId: user.UserId
-          
+          UserId: user.UserId,
+          Admin: user.Admin
         },
         'secretkey',
         {

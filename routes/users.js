@@ -96,7 +96,7 @@ router.get('/profile', function (req, res, next) {
         res.send('User not found');
       }
     });
-  });
+});
 
 
 // router.post('/login', function (req, res, next) {
@@ -180,6 +180,40 @@ router.get('/profile', function (req, res, next) {
 //   });
 // });
 
+/* List all users for admin */
+// router.get('/admin', function (req, res, next) {
+//   let token = req.cookies.jwt
+//   if (token) {
+//     authService.verifyUser(token)
+//       .then(user => {
+//         if (user.Admin) {
+//           models.users
+//             .findAll({
+//               where: { Deleted: false }
+//             })
+//             .then(usersFound => {
+//               res.setHeader('Content-Type', 'application/json');
+//               res.send(JSON.stringify(usersFound));
+//             })
+//         } else {
+//           res.status(401);
+//           res.send('Must be admin');
+//         }
+//       });
+//   } else {
+//     res.status(401);
+//     res.send('Must be logged in');
+//   }
+// });
+
+router.get('/admin', function (req, res, next) {
+  models.users
+    .findAll({ })
+    .then(usersFound => {
+      res.setHeader('Content-Type', 'application/json');
+      res.send(JSON.stringify(usersFound));
+    })
+});
 
 
 //below is logout function

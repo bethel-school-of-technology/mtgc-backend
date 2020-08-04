@@ -211,7 +211,7 @@ router.get('/admin', function (req, res, next) {
     .findAll({ })
     .then(usersFound => {
       res.setHeader('Content-Type', 'application/json');
-      res.send(JSON.stringify(usersFound));
+      res.json(usersFound);
     })
 });
 

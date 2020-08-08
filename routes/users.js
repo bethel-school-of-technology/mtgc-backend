@@ -52,7 +52,14 @@ app.post('/signup', function (req, res, next) {
     });
 });
 
-
+router.get('/profile', function (req, res, next) {
+  models.users
+    .findAll({ })
+    .then(usersFound => {
+      res.setHeader('Content-Type', 'application/json');
+      res.send(JSON.stringify(usersFound));
+    })
+});
 //Login user and return JWT as cookie post below
 
 

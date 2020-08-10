@@ -2,27 +2,12 @@ var express = require('express');
 var router = express.Router();
 var models = require('../models');
 var authService = require('../services/auth');
-var cors = require('cors');
-var path = require('path');
+const mysql = require('mysql2');
+
 var bodyParser = require('body-parser');
 
+
 const app = express();
-const port = process.env.SERVER_PORT || 8000;
-
-/* GET users listing. */
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
-app.get("/api", (req, res) => {
-  res.json("Hello");
-});
-app.listen(port, () => console.log(`Listening on port ${port}`));
-
 
 /* GET users listing. */
 app.use((req, res, next) => {
@@ -38,7 +23,7 @@ app.get("/api", (req, res) => {
   res.json("Hello");
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+
 
 //need post for creating a new user 
 /*router.get('/signup', function(req, res, next) {
@@ -95,12 +80,23 @@ router.post('/login', function (req, res, next) {
   });
 });
 
-/*router.get('/login', function(req, res, next) {
-  res.render('login');
-<<<<<<< HEAD
-});*/
-
-
+//need get mtehod to pull profile page of user
+router.get('/profile', function (req, res, next) {
+  models.users
+    .findByPk(parseInt(req.params.id))
+    .then(user => {
+      if (user) {
+        res.render('profile', {
+          FirstName: user.FirstName,
+          LastName: user.LastName,
+          Email: user.Email,
+          Username: user.Username
+        });
+      } else {
+        res.send('User not found');
+      }
+    });
+});
 
 
 // router.post('/login', function (req, res, next) {
@@ -130,60 +126,94 @@ router.post('/login', function (req, res, next) {
 // });
 
 //need get method to pull profile page of user
-router.get('/profile', function (req, res, next) {
-  let token = req.cookies.jwt;
-  if (token) {
-    authService.verifyUser(token)
-      .then(user => {
-        if (user) {
-          res.send(JSON.stringify(user));
-        } else {
-          res.status(401);
-          res.send('Invalid authentication token');
-        }
-      });
-  } else {
-    let status;
-    if (req.user.Admin) {
-      status = 'Admin';
-    }
-  }
+// router.get('/profile', function (req, res, next) {
+//   let token = req.cookies.jwt;
+//   if (token) {
+//     authService.verifyUser(token)
+//       .then(user => {
+//         if (user) {
+//           res.send(JSON.stringify(user));
+//         } else {
+//           res.status(401);
+//           res.send('Invalid authentication token');
+//         }
+//       });
+//   } else {
+//     let status;
+//     if (req.user.Admin) {
+//       status = 'Admin';
+//     }
+//   }
+// });
+
+// router.post('/login', function (req, res, next) {
+//   models.users.findOne({
+//     where: {
+//       Username: req.body.username,
+
+//     }
+//   }).then(user => {
+//     if (!user) {
+//       console.log('User not found')
+//       return res.status(401).json({
+//         message: "Login Failed"
+//       });
+//     } else {
+//       let passwordMatch = authService.comparePasswords(req.body.password, user.Password);
+//       if (passwordMatch) {
+//         let token = authService.signUser(user);
+//         res.cookie('jwt', token); //this doesn't work res.json
+//         res.send('Login successful');
+//       } else {
+//         status = 'Normal user';
+//       }
+
+//       res.render('profile', {
+//         FirstName: req.user.FirstName,
+//         LastName: req.user.LastName,
+//         Email: req.user.Email,
+//         UserId: req.user.UserId,
+//         Username: req.user.Username,
+//         Status: status
+//       });
+//     }
+//   });
+// });
+
+/* List all users for admin */
+// router.get('/admin', function (req, res, next) {
+//   let token = req.cookies.jwt
+//   if (token) {
+//     authService.verifyUser(token)
+//       .then(user => {
+//         if (user.Admin) {
+//           models.users
+//             .findAll({
+//               where: { Deleted: false }
+//             })
+//             .then(usersFound => {
+//               res.setHeader('Content-Type', 'application/json');
+//               res.send(JSON.stringify(usersFound));
+//             })
+//         } else {
+//           res.status(401);
+//           res.send('Must be admin');
+//         }
+//       });
+//   } else {
+//     res.status(401);
+//     res.send('Must be logged in');
+//   }
+// });
+
+router.get('/admin', function (req, res, next) {
+  models.users
+    .findAll({ })
+    .then(usersFound => {
+      res.setHeader('Content-Type', 'application/json');
+      res.send(JSON.stringify(usersFound));
+    })
 });
-
-router.post('/login', function (req, res, next) {
-  models.users.findOne({
-    where: {
-      Username: req.body.username,
-
-    }
-  }).then(user => {
-    if (!user) {
-      console.log('User not found')
-      return res.status(401).json({
-        message: "Login Failed"
-      });
-    } else {
-      let passwordMatch = authService.comparePasswords(req.body.password, user.Password);
-      if (passwordMatch) {
-        let token = authService.signUser(user);
-        res.cookie('jwt', token); //this doesn't work res.json
-        res.send('Login successful');
-      } else {
-        status = 'Normal user';
-      }
-
-      res.render('profile', {
-        FirstName: req.user.FirstName,
-        LastName: req.user.LastName,
-        Email: req.user.Email,
-        UserId: req.user.UserId,
-        Username: req.user.Username,
-        Status: status
-      });
-    }
-  });
-});
-
 
 
 //below is logout function

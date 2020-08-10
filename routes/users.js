@@ -7,7 +7,10 @@ const mysql = require('mysql2');
 var bodyParser = require('body-parser');
 
 
-const app = express();
+const app = express(
+
+  
+);
 
 /* GET users listing. */
 app.use((req, res, next) => {
@@ -88,23 +91,22 @@ router.post('/login', function (req, res, next) {
 });
 
 //need get mtehod to pull profile page of user
-router.get('/profile', function (req, res, next) {
+/* router.get('/profile', function (req, res, next) {
   models.users
     .findByPk(parseInt(req.params.id))
     .then(user => {
       if (user) {
         res.render('profile', {
-          FirstName: user.FirstName,
-          LastName: user.LastName,
-          Email: user.Email,
+          FirstName: users.FirstName,
+          LastName: users.LastName,
+          Email: users.Email,
           Username: user.Username
         });
       } else {
         res.send('User not found');
       }
     });
-});
-
+}); */
 
 // router.post('/login', function (req, res, next) {
 //   models.users.findOne({
@@ -221,7 +223,16 @@ router.get('/admin', function (req, res, next) {
       res.send(JSON.stringify(usersFound));
     })
 });
-
+//need get method to pull profile page of user
+router.get('/profile', function(req, res, next) {
+  models.users
+    .findAll({ })
+    .then(user => {
+      res.json({
+       user: users
+      });
+    });
+});
 
 //below is logout function
 router.get('/logout', function (req, res, next) {

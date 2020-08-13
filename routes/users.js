@@ -28,12 +28,12 @@ app.get("/api", (req, res) => {
 
 
 
-//need post for creating a new user 
-/*router.get('/signup', function(req, res, next) {
+// need post for creating a new user 
+router.get('/signup', function(req, res, next) {
   res.render('signup');
-});*/
+});
 
-app.post('/signup', function (req, res, next) {
+router.post('/signup', function (req, res, next) {
   models.users
     .findOrCreate({
       where: {
@@ -43,7 +43,9 @@ app.post('/signup', function (req, res, next) {
         FirstName: req.body.firstName,
         LastName: req.body.lastName,
         Email: req.body.email,
-        Password: req.body.password
+        Password: req.body.password,
+        PhoneNumber: req.body.phoneNumber,
+        Bio: req.body.bio
       }
     })
     .spread(function (result, created) {

@@ -59,7 +59,7 @@ var migrationCommands = [{
                 "field": "Missionary"
             },
             "PhoneNumber": {
-                "type": Sequelize.INTEGER,
+                "type": Sequelize.STRING,
                 "field": "PhoneNumber"
             },
             "Bio": {

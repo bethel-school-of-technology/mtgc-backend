@@ -112,7 +112,7 @@
                 },
                 "PhoneNumber": {
                     "field": "PhoneNumber",
-                    "seqType": "Sequelize.INTEGER"
+                    "seqType": "Sequelize.STRING"
                 },
                 "Bio": {
                     "field": "Bio",
@@ -130,5 +130,5 @@
             "indexes": []
         }
     },
-    "revision": 5
+    "revision": 6
 }

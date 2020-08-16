@@ -30,6 +30,10 @@
                     "field": "Zip",
                     "seqType": "Sequelize.INTEGER"
                 },
+                "OrganizationCountry": {
+                    "field": "OrganizationCountry",
+                    "seqType": "Sequelize.STRING"
+                },
                 "MissionLocationCity": {
                     "field": "MissionLocationCity",
                     "seqType": "Sequelize.STRING"
@@ -46,8 +50,12 @@
                     "field": "Image",
                     "seqType": "Sequelize.BLOB"
                 },
+                "Bio": {
+                    "field": "Bio",
+                    "seqType": "Sequelize.STRING"
+                },
                 "UserId": {
-                    "allowNull": false,
+                    "allowNull": true,
                     "field": "UserId",
                     "seqType": "Sequelize.INTEGER"
                 },
@@ -130,5 +138,5 @@
             "indexes": []
         }
     },
-    "revision": 6
+    "revision": 8
 }

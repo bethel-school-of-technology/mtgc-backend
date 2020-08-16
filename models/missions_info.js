@@ -13,12 +13,14 @@ module.exports = (sequelize, DataTypes) => {
     City: DataTypes.STRING,
     State: DataTypes.STRING,
     Zip: DataTypes.INTEGER,
+    OrganizationCountry: DataTypes.STRING,
     MissionLocationCity: DataTypes.STRING,
     MissionLocationCountry: DataTypes.STRING,
     Verified: DataTypes.BOOLEAN,
     Image: DataTypes.BLOB,
+    Bio: DataTypes.STRING,
     UserId: {
-      allowNull:false,
+      allowNull:true,
       type: DataTypes.INTEGER
     },
   }, {});

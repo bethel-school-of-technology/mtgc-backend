@@ -13,20 +13,22 @@ router.get('/mission_signup', function(req, res, next) {
     models.missions_info
       .findOrCreate({
         where: {
-          OrganizationName: req.body.organizationname
+          OrganizationName: req.body.organizationName
         },
         defaults: {
           OrganizationStreetAddress: req.body.organizationStreetAddress,
-          City: req.body.lastName,
+          City: req.body.city,
           State: req.body.email,
-          Zip: req.body.zip,	  MissionLocationCity:req.body.missionLocationCity,
-      MissionLocationCountry: req.body.missionLocationCountry
-  
+          Zip: req.body.zip,
+          OrganizationCountry: req.body.organizationCountry, 
+          MissionLocationCity: req.body.missionLocationCity,
+          MissionLocationCountry: req.body.missionLocationCountry,
+          Bio: req.body.bio  
         }
       })
       .spread(function(result, created) {
         if (created) {
-          res.redirect('mission_signup');
+          res.alert("I LOVE LAMP")
         } else {
           res.send('This Organization already exists');
         }

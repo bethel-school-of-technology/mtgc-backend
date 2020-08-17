@@ -26,6 +26,7 @@ app.use((req, res, next) => {
 
 
 
+<<<<<<< HEAD
 //need post for creating a new user 
 
 
@@ -66,6 +67,26 @@ router.post('/signin') = (req, res,next) => {
     .then(user => {
       if (!user) {
         return res.status(404).send({ message: "User Not found." });
+=======
+// need post for creating a new user 
+router.get('/signup', function(req, res, next) {
+  res.render('signup');
+});
+
+router.post('/signup', function (req, res, next) {
+  models.users
+    .findOrCreate({
+      where: {
+        Username: req.body.username
+      },
+      defaults: {
+        FirstName: req.body.firstName,
+        LastName: req.body.lastName,
+        Email: req.body.email,
+        Password: req.body.password,
+        PhoneNumber: req.body.phoneNumber,
+        Bio: req.body.bio
+>>>>>>> d17afef108d53434d4af7a1d7bd1c0d27fa4c6fc
       }
 
       var passwordIsValid = bcrypt.compareSync(
@@ -159,7 +180,7 @@ router.get('/admin', function (req, res, next) {
     .findAll({ })
     .then(usersFound => {
       res.setHeader('Content-Type', 'application/json');
-      res.send(JSON.stringify(usersFound));
+      res.json(usersFound);
     })
 });
 //need get method to pull profile page of user

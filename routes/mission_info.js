@@ -18,7 +18,7 @@ router.get('/mission_signup', function(req, res, next) {
         defaults: {
           OrganizationStreetAddress: req.body.organizationStreetAddress,
           City: req.body.city,
-          State: req.body.email,
+          State: req.body.state,
           Zip: req.body.zip,
           OrganizationCountry: req.body.organizationCountry, 
           MissionLocationCity: req.body.missionLocationCity,
@@ -28,7 +28,7 @@ router.get('/mission_signup', function(req, res, next) {
       })
       .spread(function(result, created) {
         if (created) {
-          res.alert("I LOVE LAMP")
+          res.send("I LOVE LAMP")
         } else {
           res.send('This Organization already exists');
         }
@@ -39,7 +39,7 @@ router.get('/mission_signup', function(req, res, next) {
     res.render('profile-mission');
   });
   router.get('/mission/:id', function (req, res, next) {
-    models.mission_info
+    models.missions_info
       .findByPk(parseInt(req.params.id))
       .then(mission_info => {
         if (mission_info) {
@@ -59,7 +59,14 @@ router.get('/mission_signup', function(req, res, next) {
     });
 
 
-
+router.get('/missionList', function(req,res,next){
+  models.missions_info
+  .findAll({})
+  .then(missionsFound => {
+    res.setHeader('Content-Type', 'application/json');
+    res.json(missionsFound);
+  })
+});
 
 
 

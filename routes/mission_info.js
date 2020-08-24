@@ -18,6 +18,10 @@ router.post('/mission_signup', function (req, res, next) {
           models.missions_info
             .findOrCreate({
               where: {
+                OrgId: req.body.orgId
+              },
+              defaults: {
+                UserId: token.user,
                 OrganizationName: req.body.organizationName, 
                 OrganizationStreetAddress: req.body.organizationStreetAddress,
                 City: req.body.city,
@@ -27,9 +31,6 @@ router.post('/mission_signup', function (req, res, next) {
                 MissionLocationCity: req.body.missionLocationCity,
                 MissionLocationCountry: req.body.missionLocationCountry,
                 Bio: req.body.bio
-              },
-              defaults: {
-                Userid: user.Userid
               }
             })
             .spread(function(result, created){

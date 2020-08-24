@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     Image: DataTypes.BLOB,
     Bio: DataTypes.STRING,
     UserId: {
-      allowNull:true,
+      allowNull: false,
       type: DataTypes.INTEGER
     },
   }, {});

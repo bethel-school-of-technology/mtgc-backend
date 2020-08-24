@@ -18,11 +18,10 @@ router.post('/mission_signup', function (req, res, next) {
           models.missions_info
             .findOrCreate({
               where: {
-                OrgId: req.body.orgId
+                OrganizationName: req.body.organizationName
               },
               defaults: {
-                UserId: token.user,
-                OrganizationName: req.body.organizationName, 
+                UserId: token.userId,
                 OrganizationStreetAddress: req.body.organizationStreetAddress,
                 City: req.body.city,
                 State: req.body.email,
@@ -33,8 +32,8 @@ router.post('/mission_signup', function (req, res, next) {
                 Bio: req.body.bio
               }
             })
-            .spread(function(result, created){
-              if (created){
+            .spread(function (result, created) {
+              if (created) {
                 res.json({
                   message: 'Congratulations you are a mission with Mapping the Global Church',
                   status: 200
@@ -44,7 +43,7 @@ router.post('/mission_signup', function (req, res, next) {
                   message: 'Mission creation failed',
                   status: 409
                 })
-              } 
+              }
             })
         } else {
           res.json({
@@ -55,7 +54,7 @@ router.post('/mission_signup', function (req, res, next) {
       })
   } else {
     res.json({
-      message:'User not loggend in'
+      message: 'User not loggend in'
     })
   }
 });
@@ -85,13 +84,13 @@ router.get('/mission/:id', function (req, res, next) {
 });
 
 
-router.get('/missionList', function(req,res,next){
+router.get('/missionList', function (req, res, next) {
   models.missions_info
-  .findAll({})
-  .then(missionsFound => {
-    res.setHeader('Content-Type', 'application/json');
-    res.json(missionsFound);
-  })
+    .findAll({})
+    .then(missionsFound => {
+      res.setHeader('Content-Type', 'application/json');
+      res.json(missionsFound);
+    })
 });
 
 

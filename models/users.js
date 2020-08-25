@@ -20,10 +20,22 @@ module.exports = (sequelize, DataTypes) => {
       unique: true
     },
     Password: DataTypes.STRING,
-    Admin: DataTypes.BOOLEAN,
-    Missionary: DataTypes.BOOLEAN,
-    PhoneNumber: DataTypes.INTEGER,
+    Admin: {
+      type: DataTypes.BOOLEAN,
+      default: false
+    },
+    Missionary:{
+      type: DataTypes.BOOLEAN,
+      default: false
+    },
+    UserCity: DataTypes.STRING,
+    UserState: DataTypes.STRING,
+    PhoneNumber: DataTypes.STRING,
     Bio: DataTypes.STRING,
+    Deleted: {
+      type: DataTypes.BOOLEAN,
+      default: false
+    },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
   }, {});

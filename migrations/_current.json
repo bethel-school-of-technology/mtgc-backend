@@ -1,71 +1,5 @@
 {
     "tables": {
-<<<<<<< HEAD
-        
-                "missions_infos": {
-                    "tableName": "missions_infos",
-                    "schema": {
-                        "MissionId": {
-                            "allowNull": false,
-                            "autoIncrement": true,
-                            "primaryKey": true,
-                            "field": "MissionId",
-                            "seqType": "Sequelize.INTEGER"
-                        },
-                        "OrganizationName": {
-                            "field": "OrganizationName",
-                            "seqType": "Sequelize.STRING"
-                        },
-                        "OrganizationStreetAddress": {
-                            "field": "OrganizationStreetAddress",
-                            "seqType": "Sequelize.STRING"
-                        },
-                        "City": {
-                            "field": "City",
-                            "seqType": "Sequelize.STRING"
-                        },
-                        "State": {
-                            "field": "State",
-                            "seqType": "Sequelize.STRING"
-                        },
-                        "Zip": {
-                            "field": "Zip",
-                            "seqType": "Sequelize.INTEGER"
-                        },
-                        "MissionLocationCity": {
-                            "field": "MissionLocationCity",
-                            "seqType": "Sequelize.STRING"
-                        },
-                        "MissionLocationCountry": {
-                            "field": "MissionLocationCountry",
-                            "seqType": "Sequelize.STRING"
-                        },
-                        "Verified": {
-                            "field": "Verified",
-                            "seqType": "Sequelize.BOOLEAN"
-                        },
-                        "Username": {
-                            "field": "Username",
-                            "seqType": "Sequelize.STRING"
-                        },
-                        "Image": {
-                            "field": "Image",
-                            "seqType": "Sequelize.BLOB"
-                        },
-                        "createdAt": {
-                            "allowNull": false,
-                            "field": "createdAt",
-                            "seqType": "Sequelize.DATE"
-                        },
-                        "updatedAt": {
-                            "allowNull": false,
-                            "field": "updatedAt",
-                            "seqType": "Sequelize.DATE"
-                        }
-                    },
-                    "indexes": []
-                },
-=======
         "missions_infos": {
             "tableName": "missions_infos",
             "schema": {
@@ -96,6 +30,10 @@
                     "field": "Zip",
                     "seqType": "Sequelize.INTEGER"
                 },
+                "OrganizationCountry": {
+                    "field": "OrganizationCountry",
+                    "seqType": "Sequelize.STRING"
+                },
                 "MissionLocationCity": {
                     "field": "MissionLocationCity",
                     "seqType": "Sequelize.STRING"
@@ -111,6 +49,10 @@
                 "Image": {
                     "field": "Image",
                     "seqType": "Sequelize.BLOB"
+                },
+                "Bio": {
+                    "field": "Bio",
+                    "seqType": "Sequelize.STRING"
                 },
                 "UserId": {
                     "allowNull": false,
@@ -130,7 +72,6 @@
             },
             "indexes": []
         },
->>>>>>> 39059a7106a3f15232cf4a807d0b3006200af94e
         "users": {
             "tableName": "users",
             "schema": {
@@ -170,20 +111,35 @@
                     "seqType": "Sequelize.STRING"
                 },
                 "Admin": {
+                    "default": false,
                     "field": "Admin",
                     "seqType": "Sequelize.BOOLEAN"
                 },
                 "Missionary": {
+                    "default": false,
                     "field": "Missionary",
                     "seqType": "Sequelize.BOOLEAN"
                 },
+                "UserCity": {
+                    "field": "UserCity",
+                    "seqType": "Sequelize.STRING"
+                },
+                "UserState": {
+                    "field": "UserState",
+                    "seqType": "Sequelize.STRING"
+                },
                 "PhoneNumber": {
                     "field": "PhoneNumber",
-                    "seqType": "Sequelize.INTEGER"
+                    "seqType": "Sequelize.STRING"
                 },
                 "Bio": {
                     "field": "Bio",
                     "seqType": "Sequelize.STRING"
+                },
+                "Deleted": {
+                    "default": false,
+                    "field": "Deleted",
+                    "seqType": "Sequelize.BOOLEAN"
                 },
                 "createdAt": {
                     "field": "createdAt",
@@ -197,5 +153,5 @@
             "indexes": []
         }
     },
-    "revision": 5
+    "revision": 11
 }

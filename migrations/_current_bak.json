@@ -30,6 +30,10 @@
                     "field": "Zip",
                     "seqType": "Sequelize.INTEGER"
                 },
+                "OrganizationCountry": {
+                    "field": "OrganizationCountry",
+                    "seqType": "Sequelize.STRING"
+                },
                 "MissionLocationCity": {
                     "field": "MissionLocationCity",
                     "seqType": "Sequelize.STRING"
@@ -46,7 +50,12 @@
                     "field": "Image",
                     "seqType": "Sequelize.BLOB"
                 },
+                "Bio": {
+                    "field": "Bio",
+                    "seqType": "Sequelize.STRING"
+                },
                 "UserId": {
+                    "allowNull": false,
                     "field": "UserId",
                     "seqType": "Sequelize.INTEGER"
                 },
@@ -102,20 +111,27 @@
                     "seqType": "Sequelize.STRING"
                 },
                 "Admin": {
+                    "default": false,
                     "field": "Admin",
                     "seqType": "Sequelize.BOOLEAN"
                 },
                 "Missionary": {
+                    "default": false,
                     "field": "Missionary",
                     "seqType": "Sequelize.BOOLEAN"
                 },
                 "PhoneNumber": {
                     "field": "PhoneNumber",
-                    "seqType": "Sequelize.INTEGER"
+                    "seqType": "Sequelize.STRING"
                 },
                 "Bio": {
                     "field": "Bio",
                     "seqType": "Sequelize.STRING"
+                },
+                "Deleted": {
+                    "default": false,
+                    "field": "Deleted",
+                    "seqType": "Sequelize.BOOLEAN"
                 },
                 "createdAt": {
                     "field": "createdAt",
@@ -129,5 +145,5 @@
             "indexes": []
         }
     },
-    "revision": 4
+    "revision": 10
 }

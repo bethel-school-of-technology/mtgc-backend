@@ -146,16 +146,9 @@ router.get('/profile/:id', function (req, res, next) {
 });
 
 
-
-
-
-
-
-
-
 /* List all users for admin */
 router.get('/admin', function (req, res, next) {
-  let token = req.cookies.jwt
+  let token = req.headers['authorization']
   if (token) {
     authService.verifyUser(token)
       .then(user => {

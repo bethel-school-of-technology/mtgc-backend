@@ -31,7 +31,8 @@ router.post('/mission_signup', function (req, res, next) {
                 OrganizationCountry: req.body.organizationCountry,
                 MissionLocationCity: req.body.missionLocationCity,
                 MissionLocationCountry: req.body.missionLocationCountry,
-                Bio: req.body.bio
+                Bio: req.body.bio,
+                Image: req.body.file
               }
             })
             .spread(function (result, created) {
@@ -75,6 +76,7 @@ router.get('/mission/:id', function (req, res, next) {
           Zip: mission_info.zip,
           MissionLocationCity: mission_info.missionLocationCity,
           MissionLocationCountry: mission_info.missionLocationCountry
+          
         });
       } else {
         res.res.json({

@@ -3,12 +3,6 @@ var router = express.Router();
 var models = require('../models');
 var authService = require('../services/auth');
 
-
-/* 
-router.get('/mission_signup', function (req, res, next) {
-  res.render('mission_signup');
-}); */
-
 router.post('/mission_signup', function (req, res, next) {
   let token = req.headers['authorization']
   console.log(token);

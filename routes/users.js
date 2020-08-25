@@ -4,31 +4,6 @@ var models = require('../models');
 var authService = require('../services/auth');
 const mysql = require('mysql2');
 
-/* var bodyParser = require('body-parser'); */
-
-
-/* const app = express(
-
-
-);
- */
-/* set header */
-/* app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});  */
-
-
-
-
-
-//need post for creating a new user 
-
-
 router.post('/signup', function (req, res, next) {
   console.log(req.body)
   models.users

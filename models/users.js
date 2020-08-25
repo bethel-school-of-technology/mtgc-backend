@@ -22,14 +22,20 @@ module.exports = (sequelize, DataTypes) => {
     Password: DataTypes.STRING,
     Admin: {
       type: DataTypes.BOOLEAN,
-      default: 0
+      default: false
     },
     Missionary:{
       type: DataTypes.BOOLEAN,
-      default: 0
+      default: false
     },
+    UserCity: DataTypes.STRING,
+    UserState: DataTypes.STRING,
     PhoneNumber: DataTypes.STRING,
     Bio: DataTypes.STRING,
+    Deleted: {
+      type: DataTypes.BOOLEAN,
+      default: false
+    },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
   }, {});

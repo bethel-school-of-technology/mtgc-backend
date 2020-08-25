@@ -55,7 +55,7 @@
                     "seqType": "Sequelize.STRING"
                 },
                 "UserId": {
-                    "allowNull": true,
+                    "allowNull": false,
                     "field": "UserId",
                     "seqType": "Sequelize.INTEGER"
                 },
@@ -111,12 +111,22 @@
                     "seqType": "Sequelize.STRING"
                 },
                 "Admin": {
+                    "default": false,
                     "field": "Admin",
                     "seqType": "Sequelize.BOOLEAN"
                 },
                 "Missionary": {
+                    "default": false,
                     "field": "Missionary",
                     "seqType": "Sequelize.BOOLEAN"
+                },
+                "UserCity": {
+                    "field": "UserCity",
+                    "seqType": "Sequelize.STRING"
+                },
+                "UserState": {
+                    "field": "UserState",
+                    "seqType": "Sequelize.STRING"
                 },
                 "PhoneNumber": {
                     "field": "PhoneNumber",
@@ -125,6 +135,11 @@
                 "Bio": {
                     "field": "Bio",
                     "seqType": "Sequelize.STRING"
+                },
+                "Deleted": {
+                    "default": false,
+                    "field": "Deleted",
+                    "seqType": "Sequelize.BOOLEAN"
                 },
                 "createdAt": {
                     "field": "createdAt",
@@ -138,5 +153,5 @@
             "indexes": []
         }
     },
-    "revision": 8
+    "revision": 11
 }

@@ -42,6 +42,8 @@ router.post('/signup', function (req, res, next) {
         Email: req.body.email,
         Password: authService.hashPassword(req.body.password),
         Missionary: req.body.missionary,
+        UserCity: req.body.userCity,
+        UserState: req.body.userState,
         PhoneNumber: req.body.phoneNumber,
         Bio: req.body.bio,
       }

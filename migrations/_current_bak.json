@@ -111,10 +111,12 @@
                     "seqType": "Sequelize.STRING"
                 },
                 "Admin": {
+                    "default": false,
                     "field": "Admin",
                     "seqType": "Sequelize.BOOLEAN"
                 },
                 "Missionary": {
+                    "default": false,
                     "field": "Missionary",
                     "seqType": "Sequelize.BOOLEAN"
                 },
@@ -125,6 +127,11 @@
                 "Bio": {
                     "field": "Bio",
                     "seqType": "Sequelize.STRING"
+                },
+                "Deleted": {
+                    "default": false,
+                    "field": "Deleted",
+                    "seqType": "Sequelize.BOOLEAN"
                 },
                 "createdAt": {
                     "field": "createdAt",
@@ -138,5 +145,5 @@
             "indexes": []
         }
     },
-    "revision": 7
+    "revision": 10
 }

@@ -10,7 +10,9 @@ router.get('/mission_signup', function (req, res, next) {
 }); */
 
 router.post('/mission_signup', function (req, res, next) {
-  let token = req.cookies.jet
+  let token = req.headers['authorization']
+  console.log(token);
+  console.log(req.body);
   if (token) {
     authService.verifyUser(token)
       .then(user => {
@@ -21,10 +23,10 @@ router.post('/mission_signup', function (req, res, next) {
                 OrganizationName: req.body.organizationName
               },
               defaults: {
-                UserId: token.userId,
+                UserId: user.UserId,
                 OrganizationStreetAddress: req.body.organizationStreetAddress,
                 City: req.body.city,
-                State: req.body.email,
+                State: req.body.state,
                 Zip: req.body.zip,
                 OrganizationCountry: req.body.organizationCountry,
                 MissionLocationCity: req.body.missionLocationCity,
